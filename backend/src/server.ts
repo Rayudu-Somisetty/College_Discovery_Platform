@@ -30,7 +30,7 @@ app.get('/health', (_req, res) => {
 });
 
 // Temporary seed endpoint (remove after seeding)
-app.post('/seed', async (_req, res) => {
+app.all('/seed', async (_req, res) => {
 	try {
 		const { execSync } = require('child_process');
 		execSync('npm run db:seed', { stdio: 'inherit' });
