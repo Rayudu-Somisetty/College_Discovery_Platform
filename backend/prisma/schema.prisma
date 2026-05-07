@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model College {
+  id              Int       @id @default(autoincrement())
+  slug            String    @unique
+  name            String
+  city            String
+  state           String
+  averageFees     Int
+  rating          Float
+  placementRate   Float
+  avgPackage      Int
+  highestPackage  Int
+  overview        String
+
+  courses         Course[]
+  reviews         Review[]
+  examCutoffs     ExamCutoff[]
+
+  @@map("colleges")
+}
+
+model Course {
+  id              Int       @id @default(autoincrement())
+  collegeId       Int
+  name            String
+  degreeType      String    // BTECH, MBA, etc
+  durationYears   Int
+  annualFee       Int
+  eligibility     String
+
+  college         College   @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@map("courses")
+}
+
+model Review {
+  id              Int       @id @default(autoincrement())
+  collegeId       Int
+  studentName     String
+  rating          Int
+  title           String
+  body            String
+  createdAt       DateTime  @default(now())
+
+  college         College   @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@map("reviews")
+}
+
+model ExamCutoff {
+  id              Int       @id @default(autoincrement())
+  collegeId       Int
+  exam            String    // JEE_MAIN, etc
+  courseName      String
+  closingRank     Int
+  year            Int
+
+  college         College   @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@map("exam_cutoffs")
+}

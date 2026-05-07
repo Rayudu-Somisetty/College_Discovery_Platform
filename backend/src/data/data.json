@@ -1,0 +1,177 @@
+{
+  "colleges": [
+    {
+      "id": 1,
+      "slug": "abc-institute-of-tech",
+      "name": "ABC Institute of Technology",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "averageFees": 150000,
+      "rating": 4.3,
+      "placementRate": 85.2,
+      "avgPackage": 800000,
+      "highestPackage": 2500000,
+      "overview": "ABC Institute of Technology is a private engineering college focusing on practical skills and industry exposure."
+    },
+    {
+      "id": 2,
+      "slug": "xyz-college-of-engineering",
+      "name": "XYZ College of Engineering",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "averageFees": 220000,
+      "rating": 4.5,
+      "placementRate": 90.1,
+      "avgPackage": 950000,
+      "highestPackage": 3000000,
+      "overview": "XYZ College has strong placements and a growing research culture."
+    },
+    {
+      "id": 3,
+      "slug": "modern-institute-of-tech",
+      "name": "Modern Institute of Technology",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "averageFees": 180000,
+      "rating": 4.0,
+      "placementRate": 78.5,
+      "avgPackage": 650000,
+      "highestPackage": 1500000,
+      "overview": "A reputed institute with industry-aligned curriculum."
+    },
+    {
+      "id": 4,
+      "slug": "northern-university",
+      "name": "Northern University",
+      "city": "Chandigarh",
+      "state": "Chandigarh",
+      "averageFees": 90000,
+      "rating": 3.8,
+      "placementRate": 72.0,
+      "avgPackage": 500000,
+      "highestPackage": 1200000,
+      "overview": "Regional university with diverse programs."
+    },
+    {
+      "id": 5,
+      "slug": "coastal-engineering-college",
+      "name": "Coastal Engineering College",
+      "city": "Visakhapatnam",
+      "state": "Andhra Pradesh",
+      "averageFees": 120000,
+      "rating": 4.1,
+      "placementRate": 80.3,
+      "avgPackage": 700000,
+      "highestPackage": 2000000,
+      "overview": "Strong coastal engineering and marine programs."
+    },
+    {
+      "id": 6,
+      "slug": "central-college-of-science",
+      "name": "Central College of Science",
+      "city": "Delhi",
+      "state": "Delhi",
+      "averageFees": 250000,
+      "rating": 4.6,
+      "placementRate": 92.0,
+      "avgPackage": 1100000,
+      "highestPackage": 3500000,
+      "overview": "Prestigious college known for strong industry ties."
+    },
+    {
+      "id": 7,
+      "slug": "eastern-institute",
+      "name": "Eastern Institute",
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "averageFees": 80000,
+      "rating": 3.9,
+      "placementRate": 70.5,
+      "avgPackage": 450000,
+      "highestPackage": 1000000,
+      "overview": "Known for strong undergraduate programs and a vibrant campus life."
+    },
+    {
+      "id": 8,
+      "slug": "southern-tech-university",
+      "name": "Southern Tech University",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "averageFees": 135000,
+      "rating": 4.2,
+      "placementRate": 86.0,
+      "avgPackage": 780000,
+      "highestPackage": 2200000,
+      "overview": "Technical university with specializations in engineering and AI."
+    },
+    {
+      "id": 9,
+      "slug": "western-institute-of-management",
+      "name": "Western Institute of Management",
+      "city": "Pune",
+      "state": "Maharashtra",
+      "averageFees": 300000,
+      "rating": 4.4,
+      "placementRate": 88.7,
+      "avgPackage": 1200000,
+      "highestPackage": 4200000,
+      "overview": "Top MBA programs with excellent corporate partnerships."
+    },
+    {
+      "id": 10,
+      "slug": "mountain-college",
+      "name": "Mountain College",
+      "city": "Dehradun",
+      "state": "Uttarakhand",
+      "averageFees": 110000,
+      "rating": 4.0,
+      "placementRate": 77.2,
+      "avgPackage": 600000,
+      "highestPackage": 1400000,
+      "overview": "Scenic campus with focus on holistic education."
+    },
+    {
+      "id": 11,
+      "slug": "riverdale-engineering",
+      "name": "Riverdale Engineering",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "averageFees": 140000,
+      "rating": 4.1,
+      "placementRate": 81.0,
+      "avgPackage": 720000,
+      "highestPackage": 2100000,
+      "overview": "Growing tech programs and placement record."
+    },
+    {
+      "id": 12,
+      "slug": "heritage-college",
+      "name": "Heritage College",
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "averageFees": 70000,
+      "rating": 3.7,
+      "placementRate": 65.5,
+      "avgPackage": 400000,
+      "highestPackage": 900000,
+      "overview": "Affordable college with growing industry connections."
+    }
+  ],
+  "courses": [
+    { "id": 1, "college_id": 1, "name": "B.Tech Computer Science", "degree_type": "BTECH", "duration_years": 4, "annual_fee": 160000, "eligibility": "10+2 with PCM, 60%" },
+    { "id": 2, "college_id": 1, "name": "B.Tech Mechanical", "degree_type": "BTECH", "duration_years": 4, "annual_fee": 140000, "eligibility": "10+2 with PCM, 55%" },
+    { "id": 3, "college_id": 2, "name": "B.Tech AI", "degree_type": "BTECH", "duration_years": 4, "annual_fee": 220000, "eligibility": "JEE Main or equivalent" },
+    { "id": 4, "college_id": 3, "name": "B.Tech Electronics", "degree_type": "BTECH", "duration_years": 4, "annual_fee": 180000, "eligibility": "10+2 with PCM" },
+    { "id": 5, "college_id": 9, "name": "MBA Full Time", "degree_type": "MBA", "duration_years": 2, "annual_fee": 300000, "eligibility": "Graduation with 50%" }
+  ],
+  "reviews": [
+    { "id": 101, "college_id": 1, "student_name": "Rahul", "rating": 4, "title": "Good placements", "body": "Overall good experience, strong placement support.", "created_at": "2025-03-10T00:00:00.000Z" },
+    { "id": 102, "college_id": 2, "student_name": "Sana", "rating": 5, "title": "Excellent faculty", "body": "Faculty are very supportive and industry-connected.", "created_at": "2025-05-12T00:00:00.000Z" }
+  ],
+  "exam_cutoffs": [
+    { "id": 201, "college_id": 1, "exam": "JEE_MAIN", "course_name": "B.Tech Computer Science", "closing_rank": 15000, "year": 2025 },
+    { "id": 202, "college_id": 2, "exam": "JEE_MAIN", "course_name": "B.Tech AI", "closing_rank": 12000, "year": 2025 },
+    { "id": 203, "college_id": 3, "exam": "JEE_MAIN", "course_name": "B.Tech Electronics", "closing_rank": 30000, "year": 2025 },
+    { "id": 204, "college_id": 6, "exam": "JEE_MAIN", "course_name": "B.Tech CSE", "closing_rank": 8000, "year": 2025 }
+  ]
+}
