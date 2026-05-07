@@ -29,17 +29,6 @@ app.get('/health', (_req, res) => {
 	res.json({ ok: true });
 });
 
-// Temporary seed endpoint (remove after seeding)
-app.all('/seed', async (_req, res) => {
-	try {
-		const { execSync } = require('child_process');
-		execSync('npm run db:seed', { stdio: 'inherit' });
-		res.json({ success: true, message: 'Database seeded successfully' });
-	} catch (error: any) {
-		res.status(500).json({ error: error.message });
-	}
-});
-
 app.use((_req, res) => {
 	res.status(404).json({ error: 'Route not found' });
 });
