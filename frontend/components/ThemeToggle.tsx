@@ -38,12 +38,20 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="btn-secondary min-w-[112px] justify-center"
+      className="group inline-flex h-9 w-16 items-center rounded-full border border-slate-300 bg-white p-1 shadow-sm transition-all duration-300 hover:border-indigo-300 hover:shadow dark:border-slate-700 dark:bg-slate-900 dark:hover:border-indigo-400"
       aria-label="Toggle dark mode"
+      aria-pressed={theme === 'dark'}
       title={mounted ? `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode` : 'Theme'}
     >
-      <span className="text-base leading-none">{theme === 'dark' ? '☀️' : '🌙'}</span>
-      <span>{theme === 'dark' ? 'Light' : 'Dark'}</span>
+      <span
+        className={`flex h-7 w-7 items-center justify-center rounded-full text-sm leading-none shadow transition-transform duration-300 ${
+          theme === 'dark'
+            ? 'translate-x-7 bg-indigo-500 text-white'
+            : 'translate-x-0 bg-amber-100 text-amber-700'
+        }`}
+      >
+        {theme === 'dark' ? '🌙' : '☀️'}
+      </span>
     </button>
   );
 }

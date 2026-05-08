@@ -1,4 +1,5 @@
 import { prisma } from '../lib/prisma';
+import { getLocalData } from '../data/localData';
 
 type PredictionInput = {
   exam: string;
@@ -17,21 +18,67 @@ type PredictionResult = {
 };
 
 export const predict = async ({ exam, rank }: PredictionInput): Promise<PredictionResult[]> => {
-  const records = await prisma.examCutoff.findMany({
-    where: { exam },
-    include: {
-      college: {
-        select: {
-          id: true,
-          name: true,
-          slug: true,
-          city: true,
-          state: true
+  let records = [] as Array<{
+    courseName: string;
+    closingRank: number;
+    college: {
+      id: number;
+      name: string;
+      slug: string;
+      city: string;
+      state: string;
+    };
+  }>;
+
+  try {
+    records = await prisma.examCutoff.findMany({
+      where: { exam },
+      include: {
+        college: {
+          select: {
+            id: true,
+            name: true,
+            slug: true,
+            city: true,
+            state: true
+          }
         }
-      }
-    },
-    orderBy: { closingRank: 'asc' }
-  });
+      },
+      orderBy: { closingRank: 'asc' }
+    });
+  } catch {
+    const local = getLocalData();
+    const collegeById = new Map(local.colleges.map(college => [college.id, college]));
+    records = local.exam_cutoffs
+      .filter(record => record.exam === exam)
+      .map(record => {
+        const college = collegeById.get(record.college_id);
+        if (!college) return null;
+        return {
+          courseName: record.course_name,
+          closingRank: record.closing_rank,
+          college: {
+            id: college.id,
+            name: college.name,
+            slug: college.slug,
+            city: college.city,
+            state: college.state
+          }
+        };
+      })
+      .filter((item): item is {
+        courseName: string;
+        closingRank: number;
+        college: {
+          id: number;
+          name: string;
+          slug: string;
+          city: string;
+          state: string;
+        };
+      } => item !== null)
+      .sort((a, b) => a.closingRank - b.closingRank);
+  }
 
   return records
     .map(record => {

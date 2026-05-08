@@ -47,6 +47,7 @@
       radial-gradient(circle at top right, rgba(14, 165, 233, 0.10), transparent 24%),
       linear-gradient(180deg, rgb(var(--background)) 0%, rgb(var(--background-2)) 100%);
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    transition: background-color 240ms ease, color 240ms ease;
   }
 
   * {
@@ -55,6 +56,40 @@
 
   a {
     @apply transition-colors duration-200;
+  }
+
+  header,
+  main,
+  footer,
+  button,
+  input,
+  select,
+  textarea,
+  .surface,
+  .surface-strong,
+  .chip,
+  .btn-primary,
+  .btn-secondary {
+    transition: background-color 240ms ease, border-color 240ms ease, color 240ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body,
+    header,
+    main,
+    footer,
+    button,
+    input,
+    select,
+    textarea,
+    .surface,
+    .surface-strong,
+    .chip,
+    .btn-primary,
+    .btn-secondary {
+      transition: none !important;
+      animation: none !important;
+    }
   }
 }
 
@@ -118,6 +153,42 @@ body {
     color: rgb(var(--foreground));
   }
 
+  .nav-chip {
+    @apply relative overflow-hidden px-3 py-1.5 text-xs font-semibold;
+  }
+
+  .nav-chip::after {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.25rem;
+    height: 2px;
+    border-radius: 9999px;
+    background: rgb(var(--primary));
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 220ms ease;
+  }
+
+  .nav-chip:hover::after,
+  .nav-chip:focus-visible::after,
+  .nav-chip-active::after {
+    transform: scaleX(1);
+  }
+
+  .nav-chip:focus-visible {
+    outline: 2px solid rgb(var(--ring));
+    outline-offset: 2px;
+  }
+
+  .nav-chip-active {
+    border-color: rgb(var(--ring) / 0.55);
+    background: rgb(var(--primary) / 0.12);
+    color: rgb(var(--primary));
+    box-shadow: 0 4px 14px rgb(var(--primary) / 0.12);
+  }
+
   .metric-pill {
     @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold;
     background: rgba(99, 102, 241, 0.12);
@@ -162,5 +233,28 @@ body {
 
   .slide-in-from-bottom-4 {
     animation: slide-in-from-bottom 0.5s ease-out 0.1s both;
+  }
+
+  @keyframes route-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .route-fade-in {
+    animation: route-fade-in 240ms ease-out both;
+    will-change: opacity, transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .route-fade-in {
+      animation: none !important;
+      transform: none !important;
+    }
   }
 }

@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
 
 export default function CompareBar() {
   const [items, setItems] = React.useState<any[]>([]);
@@ -31,9 +32,9 @@ export default function CompareBar() {
           {items.map(i => <div key={i.id} className="chip whitespace-nowrap">{i.name}</div>)}
         </div>
         <div className="flex justify-end">
-          <a className={`btn-primary min-w-[120px] text-center ${items.length < 2 ? 'pointer-events-none opacity-60' : ''}`} href={`/compare?ids=${ids}`}>
+          <Link className={`btn-primary min-w-[120px] text-center ${items.length < 2 ? 'pointer-events-none opacity-60' : ''}`} href={`/compare?ids=${ids}`}>
             Compare
-          </a>
+          </Link>
         </div>
       </div>
     </div>

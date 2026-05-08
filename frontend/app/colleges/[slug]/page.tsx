@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
 import { api } from '../../../lib/apiClient';
 
 export default function CollegeDetail({ params }: { params: { slug: string } }) {
@@ -65,7 +66,7 @@ export default function CollegeDetail({ params }: { params: { slug: string } }) 
         <div className="rounded-3xl border-2 border-rose-200 bg-rose-50 p-6 dark:border-rose-900 dark:bg-rose-950/20">
           <h1 className="text-lg font-semibold text-rose-900 dark:text-rose-200">Oops! College not found</h1>
           <p className="mt-2 text-sm text-rose-700 dark:text-rose-300">{error || 'The college you are looking for does not exist.'}</p>
-          <a href="/colleges" className="btn-primary mt-4 inline-block rounded-full">← Back to Explore</a>
+          <Link href="/colleges" className="btn-primary mt-4 inline-block rounded-full">← Back to Explore</Link>
         </div>
       </main>
     );
@@ -106,9 +107,9 @@ export default function CollegeDetail({ params }: { params: { slug: string } }) 
             >
               {compared ? '✓ Added to Compare' : '+ Add to Compare'}
             </button>
-            <a href="/colleges" className="btn-secondary rounded-full text-center hover:bg-indigo-50 dark:hover:bg-slate-800">
+            <Link href="/colleges" className="btn-secondary rounded-full text-center hover:bg-indigo-50 dark:hover:bg-slate-800">
               ← Back
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -187,12 +188,12 @@ export default function CollegeDetail({ params }: { params: { slug: string } }) 
         <h2 className="text-2xl font-semibold text-indigo-900 dark:text-indigo-200">Ready to apply?</h2>
         <p className="mt-2 text-sm text-indigo-700 dark:text-indigo-300">Check your eligibility and compare this college with others.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <a href="/predict" className="btn-primary rounded-full transition-transform duration-300 hover:scale-105">
+          <Link href="/predict" className="btn-primary rounded-full transition-transform duration-300 hover:scale-105">
             Check Admission Chances
-          </a>
-          <a href="/compare" className="btn-secondary rounded-full transition-transform duration-300 hover:scale-105">
+          </Link>
+          <Link href="/compare" className="btn-secondary rounded-full transition-transform duration-300 hover:scale-105">
             Compare with Others
-          </a>
+          </Link>
         </div>
       </section>
     </main>

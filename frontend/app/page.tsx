@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
 
 const streams = ['Engineering', 'Medicine', 'Design', 'Others', 'Law'];
 
@@ -57,12 +58,12 @@ const footerLinks = [
   { title: 'Resources', links: [['Counselling', '/predict'], ['Notifications', '/colleges'], ['FAQs', '/compare'], ['Contact', '/']] }
 ];
 
-function IconButton({ label }: { label: string }) {
+function IconButton({ label, href }: { label: string; href: string }) {
   return (
-    <button className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/15">
+    <Link href={href} className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/15">
       <span>{label}</span>
       <span aria-hidden="true">→</span>
-    </button>
+    </Link>
   );
 }
 
@@ -122,8 +123,8 @@ export default function Home() {
                 <span className="rounded-full bg-orange-100 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-orange-600 dark:bg-orange-500/15 dark:text-orange-300">
                   Popular
                 </span>
-                <a className="btn-secondary rounded-full bg-white/90 dark:bg-slate-950/60" href="/predict">JEE Main College Predictor</a>
-                <a className="btn-secondary rounded-full bg-white/90 dark:bg-slate-950/60" href="/predict">NEET College Predictor</a>
+                <Link className="btn-secondary rounded-full bg-white/90 dark:bg-slate-950/60" href="/predict">JEE Main College Predictor</Link>
+                <Link className="btn-secondary rounded-full bg-white/90 dark:bg-slate-950/60" href="/predict">NEET College Predictor</Link>
               </div>
             </div>
           </div>
@@ -138,7 +139,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="space-y-4">
-                <IconButton label="Explore College Predictors" />
+                <IconButton label="Explore College Predictors" href="/predict" />
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                   <div className="rounded-2xl border border-white/10 bg-white/8 p-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-sky-200">Compare-ready</p>
@@ -161,7 +162,7 @@ export default function Home() {
             <h2 className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">Latest News and Notifications</h2>
             <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Important updates for admissions, counselling, and exam timelines.</p>
           </div>
-          <a className="btn-secondary rounded-full" href="/colleges">View All</a>
+          <Link className="btn-secondary rounded-full" href="/colleges">View All</Link>
         </div>
 
         <style>{`
@@ -200,8 +201,8 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a className="btn-primary rounded-full" href="/predict">ENGINEERING UG</a>
-            <a className="btn-secondary rounded-full" href="/predict">MEDICINE UG</a>
+            <Link className="btn-primary rounded-full" href="/predict">ENGINEERING UG</Link>
+            <Link className="btn-secondary rounded-full" href="/predict">MEDICINE UG</Link>
           </div>
         </article>
 
@@ -210,10 +211,10 @@ export default function Home() {
             <div className="metric-pill">Top Exams</div>
             <div className="mt-4 space-y-3">
               {exams.map(exam => (
-                <div key={exam} className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-700 dark:bg-slate-900">
+                <Link key={exam} href="/predict" className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-indigo-300 hover:bg-indigo-50 dark:border-slate-700 dark:bg-slate-900 dark:hover:border-indigo-500 dark:hover:bg-slate-800">
                   <span className="font-medium text-slate-900 dark:text-slate-100">{exam}</span>
                   <span className="text-sm text-slate-500 dark:text-slate-400">Explore</span>
-                </div>
+                </Link>
               ))}
             </div>
           </article>
@@ -238,7 +239,7 @@ export default function Home() {
               <p className="metric-pill mb-3">Predictors</p>
               <h2 className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">College and rank predictors designed to work together</h2>
             </div>
-            <a className="btn-secondary rounded-full" href="/predict">Open predictor hub</a>
+            <Link className="btn-secondary rounded-full" href="/predict">Open predictor hub</Link>
           </div>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -260,15 +261,15 @@ export default function Home() {
         <article className="surface p-6">
           <div className="metric-pill">Quick actions</div>
           <div className="mt-4 space-y-3">
-            <a className="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 font-medium text-slate-900 transition hover:border-indigo-300 hover:bg-indigo-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800" href="/colleges">
+            <Link className="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 font-medium text-slate-900 transition hover:border-indigo-300 hover:bg-indigo-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800" href="/colleges">
               Explore colleges
-            </a>
-            <a className="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 font-medium text-slate-900 transition hover:border-indigo-300 hover:bg-indigo-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800" href="/compare">
+            </Link>
+            <Link className="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 font-medium text-slate-900 transition hover:border-indigo-300 hover:bg-indigo-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800" href="/compare">
               Compare colleges
-            </a>
-            <a className="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 font-medium text-slate-900 transition hover:border-indigo-300 hover:bg-indigo-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800" href="/predict">
+            </Link>
+            <Link className="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 font-medium text-slate-900 transition hover:border-indigo-300 hover:bg-indigo-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800" href="/predict">
               Predict admission chances
-            </a>
+            </Link>
           </div>
         </article>
       </section>
@@ -280,7 +281,7 @@ export default function Home() {
                 <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-white">{section.title}</h3>
               <ul className="mt-4 space-y-3 text-sm text-slate-400">
                   {section.links.map(([label, href]) => (
-                    <li key={label}><a className="transition hover:text-white" href={href}>{label}</a></li>
+                    <li key={label}><Link className="transition hover:text-white" href={href}>{label}</Link></li>
                 ))}
               </ul>
             </div>
@@ -289,11 +290,6 @@ export default function Home() {
 
         <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
           <p>Copyright © 2026 College Discovery. All rights reserved.</p>
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="rounded-full border border-white/10 px-3 py-1">Download our app</span>
-            <span className="rounded-full border border-white/10 px-3 py-1">Android</span>
-            <span className="rounded-full border border-white/10 px-3 py-1">iOS</span>
-          </div>
         </div>
       </footer>
     </main>

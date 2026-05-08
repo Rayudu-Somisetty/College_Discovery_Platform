@@ -1,9 +1,9 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
 import { api } from '../lib/apiClient';
 import CollegeCard from './CollegeCard';
 import FilterBar from './FilterBar';
-import { CollegeSkeleton } from './Skeleton';
 
 function mapFeeFilter(fee: string) {
   if (!fee) return {};
@@ -21,6 +21,17 @@ export default function CollegeList() {
   const [states, setStates] = React.useState<string[]>([]);
   const [filters, setFilters] = React.useState<{ q?: string; state?: string; course?: string; fee?: string }>({});
   const [error, setError] = React.useState('');
+  const [selectedCollege, setSelectedCollege] = React.useState<any | null>(null);
+
+  React.useEffect(() => {
+    function onEsc(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setSelectedCollege(null);
+      }
+    }
+    window.addEventListener('keydown', onEsc);
+    return () => window.removeEventListener('keydown', onEsc);
+  }, []);
 
   React.useEffect(() => {
     // derive states from initial fetch
@@ -93,8 +104,15 @@ export default function CollegeList() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {colleges.map(c => (
           <div key={c.id} className="relative">
-            <CollegeCard college={c} />
-            <button onClick={() => toggleCompare(c)} className="chip absolute right-3 top-3 shadow-sm hover:border-indigo-300 hover:text-indigo-600 dark:hover:text-indigo-200">
+            <CollegeCard college={c} onClick={() => setSelectedCollege(c)} />
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                toggleCompare(c);
+              }}
+              className="chip absolute right-3 top-3 shadow-sm hover:border-indigo-300 hover:text-indigo-600 dark:hover:text-indigo-200"
+            >
               Add to compare
             </button>
           </div>
@@ -103,6 +121,64 @@ export default function CollegeList() {
       <div className="mt-4">
         {loading ? <div className="text-sm text-slate-500 dark:text-slate-400">Loading...</div> : hasMore ? <button onClick={() => setPage(p => p + 1)} className="btn-secondary">Load more</button> : <div className="text-sm text-slate-500 dark:text-slate-400">No more results</div>}
       </div>
+
+      {selectedCollege && (
+        <div
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-slate-950/55 px-4 py-8 backdrop-blur-sm"
+          onClick={() => setSelectedCollege(null)}
+        >
+          <article
+            className="surface surface-strong w-full max-w-2xl rounded-3xl p-6 shadow-2xl sm:p-8"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">College details</p>
+                <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">{selectedCollege.name}</h3>
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{selectedCollege.city}, {selectedCollege.state}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedCollege(null)}
+                className="chip"
+                aria-label="Close college details"
+              >
+                Close
+              </button>
+            </div>
+
+            <p className="mt-5 text-sm leading-7 text-slate-600 dark:text-slate-300">{selectedCollege.overview || 'Overview will be available soon for this college.'}</p>
+
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-center dark:border-slate-700 dark:bg-slate-900">
+                <p className="text-xs text-slate-500 dark:text-slate-400">Rating</p>
+                <p className="mt-1 text-lg font-semibold text-slate-900 dark:text-slate-100">{selectedCollege.rating ?? '—'} ★</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-center dark:border-slate-700 dark:bg-slate-900">
+                <p className="text-xs text-slate-500 dark:text-slate-400">Avg Fees</p>
+                <p className="mt-1 text-lg font-semibold text-slate-900 dark:text-slate-100">₹{selectedCollege.averageFees ?? '—'}</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-center dark:border-slate-700 dark:bg-slate-900">
+                <p className="text-xs text-slate-500 dark:text-slate-400">Placement</p>
+                <p className="mt-1 text-lg font-semibold text-slate-900 dark:text-slate-100">{selectedCollege.placementRate ?? '—'}%</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-center dark:border-slate-700 dark:bg-slate-900">
+                <p className="text-xs text-slate-500 dark:text-slate-400">Avg Package</p>
+                <p className="mt-1 text-lg font-semibold text-slate-900 dark:text-slate-100">₹{selectedCollege.avgPackage ?? '—'}</p>
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <button type="button" onClick={() => toggleCompare(selectedCollege)} className="btn-primary rounded-full">
+                Add to compare
+              </button>
+              <Link href={`/colleges/${selectedCollege.slug}`} className="btn-secondary rounded-full">
+                Open full profile
+              </Link>
+            </div>
+          </article>
+        </div>
+      )}
     </div>
   );
 }
