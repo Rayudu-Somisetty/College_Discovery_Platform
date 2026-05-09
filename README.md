@@ -242,35 +242,6 @@ College_Discovery_Platform/
 ├── README.md                       # This file
 └── .gitignore
 ```
-
----
-
-## 🔑 Environment Variables
-
-### Backend (.env.local)
-
-```env
-# Database (from Supabase)
-DATABASE_URL=postgresql://postgres.xxxxx:password@aws-1-ap-northeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true
-DIRECT_URL=postgresql://postgres.xxxxx:password@aws-1-ap-northeast-1.supabase.co:5432/postgres
-
-# Server
-NODE_ENV=development
-PORT=4000
-
-# Frontend URL (for CORS)
-FRONTEND_ORIGIN=http://localhost:3000
-```
-
-### Frontend (.env.local)
-
-```env
-# Backend API
-NEXT_PUBLIC_API_BASE_URL=http://localhost:4000
-```
-
-**⚠️ Security Note:** Never commit `.env.local` files. Use `.env.example` as a template.
-
 ---
 
 ## 📡 API Documentation
@@ -441,39 +412,7 @@ cd frontend && npm run dev
 # Terminal 3 - Database admin (optional)
 npm run db:studio
 ```
-
-### Making Changes
-
-1. Create a feature branch
-```bash
-git checkout -b feature/your-feature-name
-```
-
-2. Make changes locally and test
-```bash
-# Test in browser at http://localhost:3000
-```
-
-3. Commit with clear messages
-```bash
-git add .
-git commit -m "feat: add college filtering"
-```
-
-4. Push to GitHub
-```bash
-git push origin feature/your-feature-name
-```
-
-5. Create a Pull Request
-
-6. Once merged to main:
-   - Railway auto-deploys backend
-   - Vercel auto-deploys frontend
-   - Changes live in minutes
-
 ---
-
 ## 📊 Performance Metrics
 
 ### Frontend (Lighthouse)
@@ -491,25 +430,6 @@ git push origin feature/your-feature-name
 - **CDN:** Vercel Edge Network (100+ locations)
 - **Database:** Supabase Multi-region backups
 - **Monitoring:** Railway observability
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Code Standards
-- Use TypeScript for all code
-- Follow ESLint configuration
-- Format with Prettier
-- Add tests for new features
-- Update documentation
 
 ---
 
@@ -565,24 +485,10 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-## 👨‍💻 Authors
-
-- **Your Name** - Initial development
-- **Contributors** - See GitHub contributors page
-
----
-
-## 📞 Support
-
-- **Issues:** Open a GitHub issue for bugs
-- **Discussions:** Use GitHub discussions for ideas
-- **Email:** contact@example.com
-
----
 
 ## 🎓 About This Project
 
-This project was built as part of the **Developers Arena Web Development Internship Program**. It demonstrates modern full-stack web development practices including:
+This project was built as part of the **The AI Signal** Internship selection task. It demonstrates modern full-stack web development practices including:
 
 - Responsive design and user experience
 - RESTful API design
