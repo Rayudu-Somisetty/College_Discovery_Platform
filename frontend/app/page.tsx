@@ -54,8 +54,7 @@ const predictorTools = [
 const footerLinks = [
   { title: 'Top Exams', links: [['JEE Main', '/predict'], ['NEET', '/predict'], ['CAT', '/predict'], ['CLAT', '/predict']] },
   { title: 'College Reviews', links: [['Engineering', '/colleges'], ['Medicine', '/colleges'], ['Design', '/colleges'], ['Law', '/colleges']] },
-  { title: 'Predictors & Ebooks', links: [['Rank Predictor', '/predict'], ['College Predictor', '/predict'], ['Guides', '/predict'], ['Downloads', '/predict']] },
-  { title: 'Resources', links: [['Counselling', '/predict'], ['Notifications', '/colleges'], ['FAQs', '/compare'], ['Contact', '/']] }
+  { title: 'Predictors & Ebooks', links: [['Rank Predictor', '/predict'], ['College Predictor', '/predict'], ['Guides', '/predict'], ['Downloads', '/predict']] }
 ];
 
 function IconButton({ label, href }: { label: string; href: string }) {
@@ -275,7 +274,7 @@ export default function Home() {
       </section>
 
       <footer className="overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-950 px-6 py-8 text-slate-300 sm:px-8">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {footerLinks.map(section => (
               <div key={section.title}>
                 <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-white">{section.title}</h3>
@@ -286,10 +285,6 @@ export default function Home() {
               </ul>
             </div>
             ))}
-        </div>
-
-        <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
-          <p>Copyright © 2026 College Discovery. All rights reserved.</p>
         </div>
       </footer>
     </main>
