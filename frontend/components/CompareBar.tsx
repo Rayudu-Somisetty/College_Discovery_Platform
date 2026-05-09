@@ -29,7 +29,28 @@ export default function CompareBar() {
           <span>Compare tray</span>
         </div>
         <div className="flex gap-2 overflow-x-auto">
-          {items.map(i => <div key={i.id} className="chip whitespace-nowrap">{i.name}</div>)}
+          {items.map(i => (
+            <div key={i.id} className="chip whitespace-nowrap flex items-center gap-2">
+              <span className="truncate max-w-[200px]">{i.name}</span>
+              <button
+                aria-label={`Remove ${i.name} from compare`}
+                onClick={() => {
+                  const next = items.filter(x => x.id !== i.id);
+                  setItems(next);
+                  try {
+                    localStorage.setItem('compareCols', JSON.stringify(next));
+                    const ev = new StorageEvent('storage', { key: 'compareCols', newValue: JSON.stringify(next) });
+                    window.dispatchEvent(ev as unknown as Event);
+                  } catch (e) {
+                    // ignore
+                  }
+                }}
+                className="ml-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/0 hover:bg-slate-100 text-slate-600"
+              >
+                <span className="text-sm">×</span>
+              </button>
+            </div>
+          ))}
         </div>
         <div className="flex justify-end">
           <Link className={`btn-primary min-w-[120px] text-center ${items.length < 2 ? 'pointer-events-none opacity-60' : ''}`} href={`/compare?ids=${ids}`}>
